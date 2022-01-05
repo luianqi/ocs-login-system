@@ -1,5 +1,6 @@
 package src.sample;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -7,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.*;
 
@@ -45,24 +45,25 @@ public class DBUtils {
         ResultSet resultSet = null;
 
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ocs", "root", "romedikc");
-            psCheckUserExists = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
-            psCheckUserExists.setString(1, username);
-            resultSet = psCheckUserExists.executeQuery();
-
-            if (resultSet.isBeforeFirst()) {
-                System.out.println("User already exists!");
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("You cannot use this username.");
-                alert.show();
-            } else {
-                psInsert = connection.prepareStatement("INSERT INTO users (username, password VALUES (?, ?))");
-                psInsert.setString(1, username);
-                psInsert.setString(2, password);
-                psInsert.executeUpdate();
-
-                changeScene(event, "logged-in.fxml", "logged-in.fxml", "Welcome!", username);
-            }
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "asd");
+            System.out.println("OK");
+//            psCheckUserExists = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
+//            psCheckUserExists.setString(1, username);
+//            resultSet = psCheckUserExists.executeQuery();
+//
+//            if (resultSet.isBeforeFirst()) {
+//                System.out.println("User already exists!");
+//                Alert alert = new Alert(Alert.AlertType.ERROR);
+//                alert.setContentText("You cannot use this username.");
+//                alert.show();
+//            } else {
+//                psInsert = connection.prepareStatement("INSERT INTO users (username, password VALUES (?, ?))");
+//                psInsert.setString(1, username);
+//                psInsert.setString(2, password);
+//                psInsert.executeUpdate();
+//
+//                changeScene(event, "logged-in.fxml", "logged-in.fxml", "Welcome!", username);
+//            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

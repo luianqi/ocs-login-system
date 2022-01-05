@@ -29,7 +29,7 @@ public class SignUpController implements Initializable {
             @Override
             public void handle(ActionEvent actionEvent) {
                 if (!tf_username.getText().trim().isEmpty() && !tf_password.getText().trim().isEmpty()) {
-                    DBUtils.signUpUser(event, tf_username.getText(), tf_password.getText());
+                    DBUtils.signUpUser(actionEvent, tf_username.getText(), tf_password.getText());
                 } else {
                     System.out.println("Please fill in all information");
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -42,7 +42,7 @@ public class SignUpController implements Initializable {
         button_log_in.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                DBUtils.changeScene(event, "logged-in.fxml", "sample.fxml", "Log In!", null);
+                DBUtils.changeScene(actionEvent, "logged-in.fxml", "sample.fxml", "Log In!", null);
             }
         });
     }
