@@ -45,7 +45,7 @@ public class DBUtils {
         ResultSet resultSet = null;
 
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "asd");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ocs", "root", "romedikc");
             System.out.println("OK");
 //            psCheckUserExists = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
 //            psCheckUserExists.setString(1, username);
