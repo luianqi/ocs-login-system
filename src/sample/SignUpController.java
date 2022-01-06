@@ -1,7 +1,5 @@
 package src.sample;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -25,25 +23,17 @@ public class SignUpController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        button_signup.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                if (!tf_username.getText().trim().isEmpty() && !tf_password.getText().trim().isEmpty()) {
-                    DBUtils.signUpUser(actionEvent, tf_username.getText(), tf_password.getText());
-                } else {
-                    System.out.println("Please fill in all information");
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setContentText("Please fill in all information to sign up!");
-                    alert.show();
-                }
+        button_signup.setOnAction(actionEvent -> {
+            if (!tf_username.getText().trim().isEmpty() && !tf_password.getText().trim().isEmpty()) {
+                DBUtils.signUpUser(actionEvent, tf_username.getText(), tf_password.getText());
+            } else {
+                System.out.println("Please fill in all information");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Please fill in all information to sign up!");
+                alert.show();
             }
         });
 
-        button_log_in.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                DBUtils.changeScene(actionEvent, "logged-in.fxml", "sample.fxml", "Log In!", null);
-            }
-        });
+        button_log_in.setOnAction(actionEvent -> DBUtils.logInUser(actionEvent, tf_username.getText(), tf_password.getText()));
     }
 }

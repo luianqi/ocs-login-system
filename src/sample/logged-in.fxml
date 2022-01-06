@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF #FFFFFF;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.sample.LoggedInController">
    <children>
-      <Label layoutX="270.0" layoutY="80.0" text="WELCOME">
+      <Label fx:id="label_welcome" layoutX="270.0" layoutY="80.0" text="WELCOME">
          <font>
             <Font name="Arial Rounded MT Bold" size="13.0" />
          </font>

@@ -24,18 +24,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize (URL location, ResourceBundle resources) {
-        button_login.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                DBUtils.logInUser(event, tf_username.getText(), tf_password.getText());
-            }
-        });
-
-        button_sign_up.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                DBUtils.changeScene(event, "logged-in.fxml", "sign-up.fxml", "Sign Up!", null);
-            }
-        });
+        button_login.setOnAction(event -> DBUtils.logInUser(event, tf_username.getText(), tf_password.getText()));
+        button_sign_up.setOnAction(event -> DBUtils.changeScene(event, "sign-up.fxml", "Sign up", null));
     }
 }

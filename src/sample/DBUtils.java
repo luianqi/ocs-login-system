@@ -13,7 +13,7 @@ import java.sql.*;
 
 public class DBUtils {
 
-    public static void changeScene(ActionEvent event, String file, String fxmlFile, String title, String username) {
+    public static void changeScene(ActionEvent event, String fxmlFile, String title, String username) {
         Parent root = null;
 
         if (username != null) {
@@ -46,24 +46,23 @@ public class DBUtils {
 
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ocs", "root", "romedikc");
-            System.out.println("OK");
-//            psCheckUserExists = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
-//            psCheckUserExists.setString(1, username);
-//            resultSet = psCheckUserExists.executeQuery();
-//
-//            if (resultSet.isBeforeFirst()) {
-//                System.out.println("User already exists!");
-//                Alert alert = new Alert(Alert.AlertType.ERROR);
-//                alert.setContentText("You cannot use this username.");
-//                alert.show();
-//            } else {
-//                psInsert = connection.prepareStatement("INSERT INTO users (username, password VALUES (?, ?))");
-//                psInsert.setString(1, username);
-//                psInsert.setString(2, password);
-//                psInsert.executeUpdate();
-//
-//                changeScene(event, "logged-in.fxml", "logged-in.fxml", "Welcome!", username);
-//            }
+            psCheckUserExists = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
+            psCheckUserExists.setString(1, username);
+            resultSet = psCheckUserExists.executeQuery();
+
+            if (resultSet.isBeforeFirst()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("User already exists!");
+                alert.setContentText("You cannot use this username.");
+                alert.show();
+            } else {
+                psInsert = connection.prepareStatement("INSERT INTO users (username, password) VALUES (?, ?)");
+                psInsert.setString(1, username);
+                psInsert.setString(2, password);
+                psInsert.executeUpdate();
+
+                changeScene(event, "logged-in.fxml", "Logged in", username);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -108,7 +107,8 @@ public class DBUtils {
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.isBeforeFirst()) {
+
+            if (!resultSet.isBeforeFirst()) {
                 System.out.println("User not found in the database!");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Provided credentials are incorrect!");
@@ -117,7 +117,7 @@ public class DBUtils {
                 while (resultSet.next()) {
                     String retrievedPassword = resultSet.getString("password");
                     if (retrievedPassword.equals(password)) {
-                        changeScene(event, "logged-in.fxml", "Welcome!", username, retrievedPassword);
+                        changeScene(event, "logged-in.fxml", "Welcome!", username);
                     } else {
                         System.out.println("Passwords did not match!");
                         Alert alert = new Alert(Alert.AlertType.ERROR);
