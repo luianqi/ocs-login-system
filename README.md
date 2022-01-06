@@ -5,6 +5,9 @@ Solo project, Aiana Abdyrakhmanova
 ```
 https://github.com/luianqi/ocs-login-system.git
 ```
+
+### [YouTube Presentation](https://www.youtube.com/watch?v=QwV7tiM_LJ0)
+
 # Built With
 
 > ### `JavaFx` - The platform used
