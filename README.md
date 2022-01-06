@@ -1,4 +1,7 @@
 # Registration window based on the OCS system
+ Clone the repository
+```
+https://github.com/luianqi/ocs-login-system.git
 
 # Built With
 
