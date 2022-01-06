@@ -1,4 +1,4 @@
-# Solo project, Aiana Abdyrakhmanova
+Solo project, Aiana Abdyrakhmanova
 
 # Registration window based on the OCS system
  Clone the repository
